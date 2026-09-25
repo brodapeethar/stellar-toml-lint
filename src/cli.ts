@@ -17,7 +17,6 @@ import {
   formatGithub,
   formatHtml,
   formatJson,
-  formatJson,
   formatNdjson,
   formatJunit,
   formatSarif,
@@ -45,9 +44,7 @@ import type { Diagnostic, LintResult, RuleOverrides, Severity } from './types.js
 const VERSION = '0.1.0';
 const DEFAULT_PATH = 'stellar.toml';
 
-type Format = 'text' | 'json' | 'sarif' | 'github' | 'junit' | 'html';
-type Format = 'text' | 'json' | 'ndjson' | 'sarif' | 'github' | 'junit';
-type Format = 'text' | 'json' | 'ndjson' | 'sarif' | 'github' | 'junit' | 'checkstyle';
+type Format = 'text' | 'json' | 'ndjson' | 'sarif' | 'github' | 'junit' | 'html' | 'checkstyle';
 
 interface Cli {
   noSuggestions?: boolean;
@@ -419,8 +416,7 @@ function parseArgs(argv: string[]): Cli | 'handled' {
         const value = requireValue(argv, ++i, arg);
         if (!isFormat(value)) {
           throw new Error(
-            `Unknown format "${value}". Expected text, json, sarif, github, junit, or html.`,
-            `Unknown format "${value}". Expected text, json, ndjson, sarif, github, junit, or checkstyle.`,
+            `Unknown format "${value}". Expected text, json, ndjson, sarif, github, junit, html, or checkstyle.`,
           );
         }
         cli.format = value;
@@ -543,7 +539,7 @@ function isFormat(value: string): value is Format {
     value === 'sarif' ||
     value === 'github' ||
     value === 'junit' ||
-    value === 'html'
+    value === 'html' ||
     value === 'checkstyle'
   );
 }

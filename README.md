@@ -262,6 +262,7 @@ severity filters (All, Errors, Warnings, Info), and expandable suggestion blocks
 code frames and links into SEP-1. Every string from the linted file is HTML-escaped, so a hostile
 `stellar.toml` cannot inject markup into the report. As with the other document formats, lint one
 file per report.
+
 ### Checkstyle XML reports
 
 Jenkins (via the Warnings NG plugin) and other pipelines that ingest the Checkstyle schema read
